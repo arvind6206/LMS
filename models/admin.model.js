@@ -13,6 +13,6 @@ const BookSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+},{timestamps: true})
 
 export const BookModel = mongoose.model('Book', BookSchema)
