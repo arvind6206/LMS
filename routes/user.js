@@ -202,4 +202,44 @@ userRouter.get("/history", authMiddleware, async (req, res) => {
     }
 });
 
+userRouter.get("/books/search", async (req, res) => {
+    try {
+        const { q } = req.query;
+
+        const books = await BookModel.find({
+            $or: [
+                {
+                    bookName: {
+                        $regex: q,
+                        $options: "i"
+                    }
+                },
+                {
+                    author: {
+                        $regex: q,
+                        $options: "i"
+                    }
+                },
+                {
+                    category: {
+                        $regex: q,
+                        $options: "i"
+                    }
+                }
+            ]
+        });
+
+        res.json({
+            books
+        });
+
+    } catch (error) {
+        console.log(error);
+
+        res.status(500).json({
+            msg: "Internal Server Error"
+        });
+    }
+});
+
 export default userRouter
