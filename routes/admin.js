@@ -5,7 +5,7 @@ const adminRouter = Router();
 
 adminRouter.post("/create", async (req, res) => {
   try {
-    const { bookName, author, category } = req.body;
+    const { bookName, author, category, totalCopies} = req.body;
 
     const existingBook = await BookModel.findOne({ bookName });
 
@@ -24,6 +24,8 @@ adminRouter.post("/create", async (req, res) => {
         bookName,
         author,
         category,
+        totalCopies,
+        availableCopies: totalCopies
       });
     }
     res.status(201).json({
