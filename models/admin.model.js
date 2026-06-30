@@ -12,6 +12,14 @@ const BookSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true
+    },
+    totalCopies: {
+        type: Number,
+        default: 1
+    },
+    availableCopies: {
+        type: Number,
+        default: 1
     }
 },{timestamps: true})
 

@@ -9,6 +9,8 @@ const app = express()
 app.use(express.json())
 
 app.use('/api/v1/admin', adminRouter)
+app.use('/api/v1/user', adminRouter)
+
 
 async function main(){
     await mongoose.connect(process.env.MONGO_URI)
